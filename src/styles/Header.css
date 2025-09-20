@@ -59,10 +59,17 @@
 }
 
 .btn-icon {
-  margin-right: 8px;
   font-size: 14px;
 }
 
 .btn-text {
   display: inline;
+    margin-left: 8px;
+
+}
+
+@media (max-width: 600px) {
+  .btn-text {
+    display: none;
+  }
 }

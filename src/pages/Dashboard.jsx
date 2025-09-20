@@ -30,6 +30,7 @@ import AddEditBookModal from "../components/common/AddEditBookModal";
 import "../styles/Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { isPending } from "@reduxjs/toolkit";
 
 const Dashboard = () => {
   const { booksQuery, addBookMutation, updateBookMutation, deleteBookMutation } = useBooks();
@@ -46,7 +47,20 @@ const Dashboard = () => {
 
   const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
 
-  if (booksQuery?.isLoading) return <CircularProgress />;
+if (booksQuery?.isLoading) {
+  return (
+    <Box
+      sx={{
+        height: "100vh",        // Full viewport height
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <CircularProgress />
+    </Box>
+  );
+}
 
   if (booksQuery?.isError) {
     return <Typography color="error">Error fetching books: {booksQuery?.error?.message}</Typography>;
@@ -282,6 +296,7 @@ const Dashboard = () => {
         message="Are you sure you want to delete this book?"
         onConfirm={confirmDelete}
         onCancel={() => setConfirmOpen(false)}
+        isLoading={deleteBookMutation.isPending}
       />
 
       {/* Add/Edit Modal */}

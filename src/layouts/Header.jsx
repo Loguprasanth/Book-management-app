@@ -4,7 +4,7 @@ import { setSelectedBook } from "../features/books/bookSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faPlus } from "@fortawesome/free-solid-svg-icons";
 import AddEditBookModal from "../components/common/AddEditBookModal"; // Import the modal
-import "./Header.css";
+import "../styles/Header.css";
 
 const Header = () => {
   const dispatch = useDispatch();

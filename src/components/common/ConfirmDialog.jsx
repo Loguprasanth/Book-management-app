@@ -7,15 +7,12 @@ import {
   DialogActions,
   Button,
   Box,
-  Typography,
+  CircularProgress,
 } from "@mui/material";
-import { Warning as WarningIcon } from "@mui/icons-material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
-
-
-const ConfirmDialog = ({ open, title, message, onConfirm, onCancel }) => {
+const ConfirmDialog = ({ open, title, message, onConfirm, onCancel, isLoading }) => {
   return (
     <Dialog
       open={open}
@@ -31,28 +28,27 @@ const ConfirmDialog = ({ open, title, message, onConfirm, onCancel }) => {
     >
       <Box textAlign="center" mt={1}>
         {/* Red Circle Icon */}
-    <Box
-  sx={{
-    mx: "auto",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: 48,
-    height: 48,
-    borderRadius: "50%",
-    backgroundColor: "#fee2e2", // exact Tailwind bg-red-100
-    mb: 2,
-  }}
->
-  <FontAwesomeIcon
-    icon={faTriangleExclamation}
-    style={{
-      color: "#dc2626", // Tailwind text-red-600
-      fontSize: "20px", // Tailwind text-xl
-    }}
-  />
-</Box>
-
+        <Box
+          sx={{
+            mx: "auto",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 48,
+            height: 48,
+            borderRadius: "50%",
+            backgroundColor: "#fee2e2", // Tailwind bg-red-100
+            mb: 2,
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faTriangleExclamation}
+            style={{
+              color: "#dc2626", // Tailwind text-red-600
+              fontSize: "20px", // Tailwind text-xl
+            }}
+          />
+        </Box>
 
         {/* Title */}
         <DialogTitle
@@ -85,6 +81,7 @@ const ConfirmDialog = ({ open, title, message, onConfirm, onCancel }) => {
           <Button
             onClick={onCancel}
             variant="outlined"
+            disabled={isLoading}
             sx={{
               textTransform: "none",
               borderRadius: 2,
@@ -97,6 +94,7 @@ const ConfirmDialog = ({ open, title, message, onConfirm, onCancel }) => {
             onClick={onConfirm}
             variant="contained"
             color="error"
+            disabled={isLoading}
             sx={{
               textTransform: "none",
               borderRadius: 2,
@@ -104,12 +102,15 @@ const ConfirmDialog = ({ open, title, message, onConfirm, onCancel }) => {
               boxShadow: 1,
               "&:hover": {
                 boxShadow: 3,
-                transform: "translateY(-2px)",
               },
               transition: "all 0.2s ease-in-out",
             }}
           >
-            Delete
+            {isLoading ? (
+              <CircularProgress size={20} color="inherit" />
+            ) : (
+              "Delete"
+            )}
           </Button>
         </DialogActions>
       </Box>

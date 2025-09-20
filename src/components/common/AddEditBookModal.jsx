@@ -26,7 +26,7 @@ const AddEditBookModal = ({ open, handleClose, bookData }) => {
     control,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors,isDirty },
   } = useForm({
     defaultValues: {
       title: "",
@@ -74,17 +74,17 @@ const AddEditBookModal = ({ open, handleClose, bookData }) => {
   };
 
 
-  console.log("is laoding",updateBookMutation.status)
+  
 
   // Loading state
-  const isLoading =  addBookMutation.status === "loading" ||
-  updateBookMutation.status === "loading"
+  const isLoading =  addBookMutation.isPending ||
+  updateBookMutation.isPending
  
+console.log(updateBookMutation)
 
 
 
 
-console.log(isLoading)
   return (
     <Dialog
       open={open}
@@ -96,7 +96,7 @@ console.log(isLoading)
       {/* Header */}
       <div className="book-modal-header">
         <Typography variant="h6" className="book-modal-title">
-          {bookData?._id ? "Edit Book" : "Add New Book"}
+          {bookData?.id ? "Edit Book" : "Add New Book"}
         </Typography>
         <IconButton className="book-modal-close" onClick={handleClose}>
           <CloseIcon />
@@ -223,7 +223,7 @@ console.log(isLoading)
             <button
               type="submit"
               className="save-btn"
-              disabled={isLoading}
+              disabled={isLoading || (bookData?.id && !isDirty)}
             >
               {isLoading ? <CircularProgress size={20} color="inherit" /> : bookData?.id ? "Update Book" : "Save Book"}
             </button>

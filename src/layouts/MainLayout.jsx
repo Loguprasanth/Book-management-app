@@ -8,7 +8,7 @@ const MainLayout = () => {
       <Header />
       <main style={{ padding: "16px" ,
       backgroundColor:"rgb(243 244 246)",
-      height:"calc(100% - 65px)"
+      height:"calc(100vh - 65px)"
     }}>
         <Outlet />
       </main>
