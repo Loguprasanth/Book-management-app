@@ -1,0 +1,68 @@
+/* Container */
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 65px;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left Section */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-icon {
+  font-size: 22px;
+  color: #3b82f6; 
+  margin-right: 12px;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Right Section */
+.add-book-btn {
+  display: flex;
+  align-items: center;
+  background-color: #3b82f6;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+}
+
+.add-book-btn:hover {
+  background-color: #1565c0; /* Darker primary */
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.15);
+}
+
+.btn-icon {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.btn-text {
+  display: inline;
+}
